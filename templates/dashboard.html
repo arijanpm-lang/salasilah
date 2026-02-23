@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - Salasilah</title>
+    <style>
+        body { font-family: Arial; background-color: #f0f4f8; margin:0; padding:0; }
+        header { background-color:#1976d2; color:white; padding:15px; text-align:center; }
+        .container { padding:20px; }
+        h2 { text-align:center; color:#333; }
+        ul.family-tree { list-style:none; padding-left:20px; }
+        ul.family-tree li { margin:5px 0; position:relative; }
+        ul.family-tree li::before { content:''; position:absolute; top:-5px; left:-20px; border-left:1px solid #555; border-bottom:1px solid #555; width:20px; height:20px; }
+        span.member-name { background:white; padding:4px 8px; border-radius:6px; border:1px solid #1976d2; }
+        .edit-link { margin-left:10px; font-size:0.9em; color:#f57c00; }
+        .edit-link:hover { text-decoration:underline; }
+        .top-links { text-align:center; margin-bottom:20px; }
+        .top-links a { margin:0 10px; text-decoration:none; color:#1976d2; font-weight:bold; }
+        .top-links a:hover { text-decoration:underline; }
+    </style>
+</head>
+<body>
+<header><h1>Salasilah - Dashboard</h1></header>
+<div class="container">
+    <div class="top-links">
+        <a href="{{ url_for('add_member') }}">Tambah Ahli Keluarga</a> |
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <h2>Family Tree</h2>
+
+    <ul class="family-tree">
+        {% for father, mother, children in paired_roots %}
+        <li>
+            <span class="member-name">
+                {% if father %}{{ father.name }}{% endif %}
+                {% if father and mother %} & {% endif %}
+                {% if mother %}{{ mother.name }}{% endif %}
+            </span>
+            <ul class="family-tree">
+                {% for child in children %}
+                <li>
+                    <span class="member-name">{{ child.name }}</span>
+                    <a class="edit-link" href="{{ url_for('edit_member', member_id=child.id) }}">[Edit]</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+
+        {% for single in singles %}
+        <li>
+            <span class="member-name">{{ single.name }}</span>
+            <a class="edit-link" href="{{ url_for('edit_member', member_id=single.id) }}">[Edit]</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+</html>

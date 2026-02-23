@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Ahli Keluarga</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff3e0;
+            display: flex;
+            justify-content: center;
+            padding: 50px;
+        }
+        .form-box {
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            width: 400px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #f57c00;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ef6c00;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .back-link a {
+            color: #1976d2;
+            text-decoration: none;
+        }
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-box">
+        <h2>Edit Ahli Keluarga</h2>
+        <form method="POST">
+            <label>Nama</label>
+            <input type="text" name="name" value="{{ member.name }}" required>
+
+            <label>Tarikh Lahir</label>
+            <input type="date" name="birth_date" value="{{ member.birth_date }}">
+
+            <label>Nama Bapa</label>
+            <select name="father_id">
+                <option value="">-- Tiada --</option>
+                {% for m in members %}
+                    <option value="{{ m.id }}" {% if member.father_id == m.id %}selected{% endif %}>{{ m.name }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Nama Ibu</label>
+            <select name="mother_id">
+                <option value="">-- Tiada --</option>
+                {% for m in members %}
+                    <option value="{{ m.id }}" {% if member.mother_id == m.id %}selected{% endif %}>{{ m.name }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Simpan</button>
+        </form>
+        <div class="back-link">
+            <a href="{{ url_for('dashboard') }}">Kembali ke Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

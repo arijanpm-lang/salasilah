@@ -1,0 +1,86 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f7f8;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 30px auto;
+    background: white;
+    padding: 25px 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+h2, h3 {
+    color: #333;
+}
+
+a {
+    color: #4CAF50;
+    text-decoration: none;
+    margin-right: 15px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+form input[type=text],
+form input[type=password],
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+ul.family-tree {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+ul.family-tree li {
+    margin: 10px 0;
+    position: relative;
+    padding-left: 20px;
+}
+
+ul.family-tree li::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 10px;
+    height: 1px;
+    background: #4CAF50;
+}
+
+ul.family-tree li span.name {
+    font-weight: bold;
+    color: #333;
+}
+
+ul.family-tree li span.birth {
+    color: #666;
+    font-size: 14px;
+}
